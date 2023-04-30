@@ -242,7 +242,9 @@ def plot_bayesian_analysis(df):
     plt.figure('binomial', figsize=(10, 5))
     plt.cla()
     plt.clf()
-    outcomes = np.random.binomial(n=4*MATURITY, p=np.mean(sample['theta']), size=10000).tolist()
+    outcomes =[]
+    for i in range(500):
+        outcomes += np.random.binomial(n=4*MATURITY, p=sample['theta'][i], size=100).tolist()
     weights = np.ones_like(outcomes)/float(len(outcomes))
     bins = max(outcomes) - min(outcomes)
     plt.hist(outcomes, bins=bins, weights=weights, color='purple', edgecolor='white',  alpha=0.5)
